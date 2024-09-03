@@ -1,3 +1,5 @@
+using RedirectMiddleware;
+
 namespace SampleWebApplication
 {
     public class Program
@@ -8,7 +10,8 @@ namespace SampleWebApplication
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddRedirectMiddleware();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -21,9 +24,8 @@ namespace SampleWebApplication
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseRedirectMiddleware("https://localhost:7273/api/redirects", TimeSpan.FromSeconds(30));
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.MapControllerRoute(

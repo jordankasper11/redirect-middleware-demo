@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using RedirectMiddleware.Models;
+using RedirectMiddleware;
 
 namespace SampleRedirectApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class RedirectController : ControllerBase
+    [Route("api/[controller]")]
+    public class RedirectsController : ControllerBase
     {
         [HttpGet]
         public IEnumerable<RedirectModel> Get()
