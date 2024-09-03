@@ -10,7 +10,7 @@ namespace SampleWebApplication
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddRedirectMiddleware();
+            builder.Services.AddRedirectMiddleware("https://localhost:7273/api/redirects", TimeSpan.FromSeconds(5));
             
             var app = builder.Build();
 
@@ -24,7 +24,7 @@ namespace SampleWebApplication
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseRedirectMiddleware("https://localhost:7273/api/redirects", TimeSpan.FromSeconds(30));
+            app.UseRedirectMiddleware();
             app.UseRouting();
             app.UseAuthorization();
 

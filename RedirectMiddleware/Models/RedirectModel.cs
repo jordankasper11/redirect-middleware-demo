@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedirectMiddleware
+namespace RedirectMiddleware.Models
 {
     public class RedirectModel
     {
@@ -22,10 +22,10 @@ namespace RedirectMiddleware
 
         public RedirectModel(string redirectUrl, string targetUrl, int redirectType, bool useRelative)
         {
-            this.RedirectUrl = redirectUrl;
-            this.TargetUrl = targetUrl;
-            this.RedirectType = redirectType;
-            this.UseRelative = useRelative;
+            RedirectUrl = redirectUrl;
+            TargetUrl = targetUrl;
+            RedirectType = redirectType;
+            UseRelative = useRelative;
         }
     }
 }

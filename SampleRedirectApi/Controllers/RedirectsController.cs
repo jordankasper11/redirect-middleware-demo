@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using RedirectMiddleware;
+using RedirectMiddleware.Models;
 
 namespace SampleRedirectApi.Controllers
 {
