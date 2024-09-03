@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using RedirectMiddleware.Middleware;
 
 namespace RedirectMiddleware
 {
@@ -6,6 +7,8 @@ namespace RedirectMiddleware
     {
         public static IApplicationBuilder UseRedirectMiddleware(this IApplicationBuilder app)
         {
+            app.UseMiddleware<RedirectionMiddleware>();
+
             return app;
         }
     }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RedirectMiddleware.Models
+﻿namespace RedirectMiddleware.Models
 {
     public class RedirectModel
     {
@@ -18,14 +12,6 @@ namespace RedirectMiddleware.Models
 
         public RedirectModel()
         {
-        }
-
-        public RedirectModel(string redirectUrl, string targetUrl, int redirectType, bool useRelative)
-        {
-            RedirectUrl = redirectUrl;
-            TargetUrl = targetUrl;
-            RedirectType = redirectType;
-            UseRelative = useRelative;
         }
     }
 }
