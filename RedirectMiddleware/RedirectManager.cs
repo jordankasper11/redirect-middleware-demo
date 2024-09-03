@@ -1,6 +1,9 @@
 ﻿using RedirectMiddleware.Models;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
+
+[assembly: InternalsVisibleTo("RedirectMiddleware.Tests")]
 
 namespace RedirectMiddleware
 {
@@ -24,7 +27,7 @@ namespace RedirectMiddleware
             // If there is an exact match, us the specified redirect URL
             if (_redirects.TryGetValue(requestUrl, out var redirect))
             {
-                return new RedirectResponse(redirect.RedirectUrl, redirect.RedirectType);
+                return new RedirectResponse(redirect.TargetUrl, redirect.RedirectType);
             }
 
             // If there is no exact match, try to find the closest match with UseRelative set to true
@@ -59,13 +62,25 @@ namespace RedirectMiddleware
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
 
-            _redirects = (redirects ?? new List<RedirectModel>()).ToDictionary(r => SanitizeUrl(r.RedirectUrl), r =>
+            await Load(redirects);
+        }
+
+        internal Task Load(IEnumerable<RedirectModel>? redirects)
+        {
+            if (redirects == null)
+            {
+                redirects = new List<RedirectModel>();
+            }
+
+            _redirects = redirects.ToDictionary(r => SanitizeUrl(r.RedirectUrl), r =>
             {
                 r.RedirectUrl = SanitizeUrl(r.RedirectUrl);
                 r.TargetUrl = SanitizeUrl(r.TargetUrl);
 
                 return r;
             }).AsReadOnly();
+
+            return Task.CompletedTask;
         }
 
         private string SanitizeUrl(string url)
