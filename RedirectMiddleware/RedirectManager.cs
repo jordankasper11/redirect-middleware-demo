@@ -7,7 +7,16 @@ using System.Text.Json;
 
 namespace RedirectMiddleware
 {
-    internal class RedirectManager
+    internal interface IRedirectManager
+    {
+        RedirectResponse? GetRedirect(string requestUrl);
+
+        Task Refresh();
+
+        Task Load(IEnumerable<RedirectModel>? redirects);
+    }
+
+    internal class RedirectManager : IRedirectManager
     {
         private readonly string _apiUrl;
         private readonly IHttpClientFactory _httpClientFactory;
@@ -65,7 +74,7 @@ namespace RedirectMiddleware
             await Load(redirects);
         }
 
-        internal Task Load(IEnumerable<RedirectModel>? redirects)
+        public Task Load(IEnumerable<RedirectModel>? redirects)
         {
             if (redirects == null)
             {

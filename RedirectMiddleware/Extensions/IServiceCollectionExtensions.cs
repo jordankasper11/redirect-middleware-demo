@@ -11,7 +11,7 @@ namespace RedirectMiddleware
         {
             services.AddHttpClient();
 
-            services.AddSingleton(serviceProvider =>
+            services.AddSingleton<IRedirectManager>(serviceProvider =>
             {
                 var httpClientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
 
@@ -22,7 +22,7 @@ namespace RedirectMiddleware
 
             services.AddHostedService<RedirectBackgroundService>(serviceProvider =>
             {
-                var redirectManager = serviceProvider.GetRequiredService<RedirectManager>();
+                var redirectManager = serviceProvider.GetRequiredService<IRedirectManager>();
                 var logger = serviceProvider.GetRequiredService<ILogger<RedirectBackgroundService>>();
 
                 return new RedirectBackgroundService(redirectManager, interval, logger);

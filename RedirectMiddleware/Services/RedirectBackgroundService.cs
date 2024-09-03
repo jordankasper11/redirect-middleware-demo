@@ -4,10 +4,10 @@ namespace RedirectMiddleware.Services
 {
     internal class RedirectBackgroundService : IntervalBackgroundService
     {
-        private readonly RedirectManager _redirectManager;
+        private readonly IRedirectManager _redirectManager;
         private readonly ILogger _logger;
 
-        public RedirectBackgroundService(RedirectManager redirectManager, TimeSpan interval, ILogger<RedirectBackgroundService> logger) : base(interval)
+        public RedirectBackgroundService(IRedirectManager redirectManager, TimeSpan interval, ILogger<RedirectBackgroundService> logger) : base(interval)
         {
             _redirectManager = redirectManager;
             _logger = logger;

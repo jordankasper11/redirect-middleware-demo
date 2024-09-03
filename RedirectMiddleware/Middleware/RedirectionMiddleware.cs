@@ -4,9 +4,9 @@ namespace RedirectMiddleware.Middleware
 {
     internal class RedirectionMiddleware : IMiddleware
     {
-        private readonly RedirectManager _redirectManager;
+        private readonly IRedirectManager _redirectManager;
 
-        public RedirectionMiddleware(RedirectManager redirectManager)
+        public RedirectionMiddleware(IRedirectManager redirectManager)
         {
             _redirectManager = redirectManager;    
         }

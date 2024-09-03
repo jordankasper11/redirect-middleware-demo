@@ -6,7 +6,7 @@ namespace RedirectMiddleware.Tests
     [TestClass]
     public class RedirectManagerTests
     {
-        private readonly RedirectManager _redirectManager;
+        private readonly IRedirectManager _redirectManager;
 
         public RedirectManagerTests()
         {
