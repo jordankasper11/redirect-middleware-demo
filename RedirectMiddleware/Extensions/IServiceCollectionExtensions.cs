@@ -20,7 +20,7 @@ namespace RedirectMiddleware
 
             services.AddTransient<RedirectionMiddleware>();
 
-            services.AddHostedService<RedirectBackgroundService>(serviceProvider =>
+            services.AddHostedService(serviceProvider =>
             {
                 var redirectManager = serviceProvider.GetRequiredService<IRedirectManager>();
                 var logger = serviceProvider.GetRequiredService<ILogger<RedirectBackgroundService>>();
