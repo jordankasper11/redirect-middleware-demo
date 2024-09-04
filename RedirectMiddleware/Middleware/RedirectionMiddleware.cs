@@ -13,7 +13,7 @@ namespace RedirectMiddleware.Middleware
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            var requestUrl = context.Request.Path;
+            var requestUrl = context.Request.Path + context.Request.QueryString;
             var redirectResponse = _redirectManager.GetRedirect(requestUrl);
 
             if (redirectResponse == null)
